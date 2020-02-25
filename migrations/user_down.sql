@@ -1,2 +1,2 @@
-delete table `user`;
-delete table `user_role`;
+DROP TABLE `user`;
+DROP TABLE `user_role`;

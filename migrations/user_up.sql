@@ -1,16 +1,20 @@
-create table `user` (
-  `id` int not null,
-  `username` text not null,
-  `role_id` int not null
-);
+CREATE TABLE `user`
+(
+    `id`       int unsigned NOT NULL AUTO_INCREMENT,
+    `username` varchar(100) NOT NULL,
+    `role_id`  int unsigned NOT NULL,
+    PRIMARY KEY `user_id_primary` (`id`),
+    KEY `username` (`username`)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
 
-alter table `user` add primary key `user_id_primary`(`id`);
+CREATE TABLE `user_role`
+(
+    `id`       int unsigned NOT NULL AUTO_INCREMENT,
+    `rolename` varchar(100) NOT NULL,
+    PRIMARY KEY `user_role_id_primary` (`id`)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
 
-create table `user_role` (
-    `id` int not null,
-    `rolename` text not null
-);
-
-alter table `user_role` add primary key `user_role_id_primary`(`id`);
-
-alter table `user` add constraint `user_role_id_foreign` foreign key (`role_id`) references `user_role` (`id`);
+ALTER TABLE `user`
+    ADD CONSTRAINT `user_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `user_role` (`id`);
